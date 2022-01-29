@@ -12,11 +12,8 @@ class myThread (threading.Thread):
       threadLock.release()
 
 def thread_sieve(x):
-    # print(str(x))
     for y in range(x*x, 100000000, x):
-            # if x == 17:
-            #     print(str(y))
-            bools[y] = False
+        bools[y] = False
 
 bools = [True] * 100000000
 thread_counter = 0
@@ -25,14 +22,7 @@ threadLock = threading.Lock()
 primes = []
 start_time = time.time()
 for x in range(2, 10000):
-    # if x == 17:
-    #     print("HIHIHIH")
-    # if x == 677:
-    #     print(str(bools[x]))
     if bools[x]:
-        # if x == 17:
-        #     print("we made it")
-        # primes.append(x)
         if thread_counter >= 8:
             for t in threads:
                 t.join()
@@ -42,10 +32,6 @@ for x in range(2, 10000):
             tmp = myThread(x)
             tmp.start()
             threads.append(tmp)
-        # else:
-        #     for t in threads:
-        #         t.join()
-        #         thread_counter = 0
 
 for x in range(2, len(bools)):
     if bools[x]:
@@ -58,4 +44,4 @@ with open('primes.txt', 'w') as fp:
     print("SUM OF PRIMES: %s" % sum(primes))
     print("MAX 10 PRIMES: %s" % sorted(primes)[-10:])
 
-# print(primes)
+
